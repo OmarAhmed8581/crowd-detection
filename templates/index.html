@@ -1,0 +1,462 @@
+{% include 'header.html' %}
+
+</style>
+<style>
+    
+.center {
+
+	left: 50%; 
+
+	width: 540px;
+	height: 460px; 
+    
+	/* box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2); */
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-direction: column;
+}
+
+.title {
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #999;
+	text-align: center;
+}
+
+h1 {
+	font-size: 16px;
+	font-weight: 300;
+	color: #666;
+}
+
+.dropzone {
+	width: 300px;
+	height: 130px;
+	border: 2px dashed #000;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.upload-icon {
+	margin: 23px 2px 2px 2px;
+}
+
+.upload-input {
+	position: relative;
+	top: -62px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.btn1 {
+	display: block;
+	width: 140px;
+	height: 40px;
+	background: rgb(185, 128, 185);
+	color: #fff;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: 0 3px 0 0 hotpink;
+	transition: all 0.3s ease-in-out;
+	font-size: 14px;
+}
+
+.btn1:hover {
+	background: rebeccapurple;
+	box-shadow: 0 3px 0 0 deeppink;
+}
+</style>
+<body>
+    {% include 'loader.html' %}
+    <div class="overlay"></div>
+        <!-- Main Search -->
+    
+
+    <!-- Right Icon menu Sidebar -->
+
+   
+
+
+    <!-- Left Sidebar -->
+    {% include 'left_sidebar.html' %}
+
+    <div class="modal" id="Reportmodel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="width: 900px;">
+            <div class="modal-header">
+              <h5 class="modal-title">Model</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p style="font-size: 13px;font-weight: bold;"> Input Images </p>
+                        <img src="" id="img1">
+                    </div>
+                    <div class="col-md-6">
+                        <p style="font-size: 13px;font-weight: bold;"> Output Images </p>
+                        <img src="" id="img2">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <section class="content" style="margin: 20px 20px 20px 20px;">
+        <div class="">
+            <br>
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-7 col-md-6 col-sm-12">
+                        <h2><i class="fas fa-users"></i> Detection</h2>
+                        <!-- <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button> -->
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="card">
+                      
+                        <div class="body">
+                           
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs p-0 mb-3">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#real" style="font-size: medium;">Algorthim/block diagram </a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Violation1" style="font-size: medium;"> Images detection </a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Violation2" style="font-size: medium;">Video detection</a></li>
+                            </ul> 
+                        </div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane in active" id="real">
+                                <div class="row clearfix">
+                                    <div class="col-md-5" style="margin-left: 7%;" >
+                                        <div class="card" style="background-color: #ffffff;" >
+                                            <div class="header" style="text-align: center;">
+                                                <h3 style="text-decoration: underline;color: #606060;">Algorthim</h3>
+                                            </div>
+                                            <div class="body" id="map_body" style="border-radius: 0.35rem;background-color: #ffffff;"  > 
+                                                <p style="font-size: 17px;color: #424242;font-weight: bold;" > for i in n :   where n number of images input </p>
+                                                <p style="font-size: 17px;color: #424242;margin-left: 30px;font-weight: bold;" >  detection_object = detect_objects(images_path) </p>
+                                                <p style="font-size: 17px;color: #424242;margin-left: 30px;font-weight: bold;" >  draw_boxes = draw_bboxes(detection_object) </p>
+                                                <p style="font-size: 17px;color: #424242;margin-left: 30px;font-weight: bold;" >  count_persons = count_persons(images_path) </p>
+                                                <p style="font-size: 17px;color: #424242;margin-left: 30px;font-weight: bold;" >  Save Images in folder</p>
+                                                
+                                            </div>
+                                         
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="card" style="background-color: #ffffff;"  >
+                                            <div class="header" style="text-align: center;">
+                                                <h3 style="text-decoration: underline;color: #606060;">Block diagram</h3>
+                                            </div>
+                                            <div class="body" id="map_body" style="border-radius: 0.35rem;background-color: #ffffff;" > 
+                                                <!-- <img src="static/assets/images/algo1.jpg" height="100%" width="100%" > -->
+                                            </div>
+                                         
+                                            
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                      
+                       
+                        <div role="tabpanel" class="tab-pane in" id="Violation1">
+                            <div class="row clearfix">
+                                <div class="col-md-4" style="margin-left: 7%;" >
+                                    <div class="card" style="background-color: #ffffff;" >
+                                        <div class="header" style="text-align: center;">
+                                            <h3 style="text-decoration: underline;color: #606060;">Upload images</h3>
+                                        </div>
+                                        <div class="body" id="map_body" style="border-radius: 0.35rem;background-color: #ffffff;"  > 
+                                            <div class="center">
+                                                <div class="title">
+                                                    <h1>Drop file to upload</h1>
+                                                </div>
+                                        
+                                                <!-- <div class="dropzone" style="cursor: pointer;">
+                                                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" width="100" height="100" />
+                                                    <input type="file" class="upload-input" />
+                                                </div> -->
+
+                                               
+
+                                                    <img src="static/assets/images/a.png" width="50%" height="50%" id="img" >
+                                                  
+                                                   
+                                                
+                                        
+                                                <input type="file" id="file" class="btn1" name="uploadbutton" value="Upload file"  onchange="upload_images()" accept=".jpg,.jpeg">
+                                        
+                                            </div>
+                                        </div>
+                                     
+                                        
+                                    </div>
+                               
+                                </div>
+                                <div class="col-md-6" style="margin-left: 3%;" >
+                                    <div class="card" style="background-color: #ffffff;" >
+                                        <div class="header" style="text-align: center;">
+                                            <h3 style="text-decoration: underline;color: #606060;">Dataset</h3>
+                                        </div>
+                                        <div class="body" id="map_body" style="border-radius: 0.35rem;background-color: #ffffff;"  > 
+                                            <button type="button" class="btn btn-success" style="background-color:#D35400;border: none;" onclick="onprocess()">Process</button>
+                                            <div style="overflow-x: scroll;">
+                                                <table class="table table-striped" style="overflow-x: scroll;" >
+                                                    <thead style="background-color: #5499C7;color: #fff;">
+                                                    <tr>
+                                                        <th scope="col">S.No</th>
+                                                        <th scope="col">Images</th>
+                                                        <th scope="col">Path</th>
+                                                        <th scope="col">Count people</th>
+                                                        <th scope="col">Crowd/crowdness</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbody">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane in" id="Violation2">
+                            <div class="row clearfix">
+                                <div class="col-md-5" style="margin-left: 20px;" >
+                                    
+                                    <div class="card" style="background-color: #ffffff;" >
+                                        <div class="header" style="text-align: center;">
+                                            <h3 style="text-decoration: underline;color: #606060;">Input Video</h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Video Path</label>
+                                                <input type="file" name="file" id="file1" autocomplete="off" required>
+                                                <button type="submit" class="btn btn-primary" onclick="video_path()">upload</button>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- <video width="100%" height="400" id="video_path" controls>
+                                                    <source src="#" id="video_src" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video> -->
+                                                <iframe  id="video_path" title="description" width="100%" height="400"></iframe>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5" style="margin-left: 20px;" >
+                                    
+                                    <div class="card" style="background-color: #ffffff;" >
+                                        <div class="header" style="text-align: center;">
+                                            <h3 style="text-decoration: underline;color: #606060;">Output Video</h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="form-group">
+                                                <!-- <video width="100%" height="400" id="video_path" controls>
+                                                    <source src="#" id="video_src" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video> -->
+                                                <img src="static/assets/images/img2.jpg" id="video1" width="100%" height="400">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="static/assets/bundles/libscripts.bundle.js"></script> 
+    <script src="static/assets/bundles/vendorscripts.bundle.js"></script> 
+    
+    <script src="static/assets/plugins/momentjs/moment.js"></script>
+    
+    <script src="static/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script> 
+    
+    <script src="static/assets/bundles/mainscripts.bundle.js"></script>
+    <script src="static/assets/js/pages/forms/basic-form-elements.js"></script> 
+    
+    <script src="static/assets/plugins/multi-select/js/jquery.multi-select.js"></script> <!-- Multi Select Plugin Js --> 
+    <script src="static/assets/plugins/jquery-spinner/js/jquery.spinner.js"></script> <!-- Jquery Spinner Plugin Js --> 
+    <script src="static/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script> <!-- Bootstrap Tags Input Plugin Js --> 
+    <script src="static/assets/plugins/nouislider/nouislider.js"></script> <!-- noUISlider Plugin Js -->
+    
+    <script src="static/assets/plugins/select2/select2.min.js"></script> <!-- Select2 Js -->
+    
+    <script src="static/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js --> 
+    <script src="static/assets/js/pages/forms/advanced-form-elements.js"></script> 
+
+    <!-- Js code -->
+    <script>
+        var s_no=1;
+        var temp=[];
+        function video_path(){
+            // video_name=document.getElementById("video_name").value;
+            // document.getElementById("video_src").src=video_name;
+            
+            var videoInp=document.getElementById('file1')
+            const [file] = videoInp.files
+            
+            if (file) {
+
+                console.log("video 1")
+                document.getElementById("video1").src="static/assets/images/record.gif"
+
+                // console.log(file)
+                var files=document.getElementById('file1').files[0]
+                var form_data = new FormData();
+                form_data.append("files[]",files);
+                $.ajax({
+
+                    url: "/process_Video",
+                    dataType: 'json', // what to expect back from server
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(response) {
+                        console.log("video")
+                        console.log(response['filename']);
+                        document.getElementById("video_path").src="http://192.168.21.144:5004/static/assets/uploads_video//1.mp4"
+                        document.getElementById("video1").src="{{ url_for('video_feed') }}"
+                        console.log(document.getElementById("video_path").src)
+
+                }});
+            }
+
+
+        }
+        function upload_images(){
+            var imgInp=document.getElementById('file')
+            var table=document.getElementById("tbody")
+            const [file] = imgInp.files
+                if (file) {
+                    // blah=document.getElementById('img')
+                    // blah.src = URL.createObjectURL(file)
+                    var row = table.insertRow(-1);
+                    var td = row.insertCell(0);
+                    td.innerHTML=String(s_no);
+
+                    var td = row.insertCell(1);
+                    td.innerHTML="<img src='"+URL.createObjectURL(file)+"'>"
+
+                    var td = row.insertCell(2);
+                    td.innerHTML=URL.createObjectURL(file)
+
+                    var td = row.insertCell(3);
+                    td.innerHTML="0"
+                    td.id=String(s_no)+"_1"
+
+                    var td = row.insertCell(4);
+                    td.innerHTML="--"
+                    td.id=String(s_no)+"_2"
+
+                    var td = row.insertCell(5);
+                    td.innerHTML='<p><button type="button" class="btn btn-success btn1" style="background-color:#1B4F72;border:none">View</button> <img src="static/assets/images/loader.gif" id="'+s_no+'" style="display:none;width:80px;height:80px;"></p>'
+
+                    temp.push(document.getElementById('file').files[0]);
+
+                    console.log(temp);
+
+                    s_no+=1
+            
+                }
+            }
+
+            var set_value=0
+
+            function onprocess(){
+               if(temp.length!=set_value){
+
+               
+                    var loader_id  = document.getElementById(String(set_value+1));
+                    var count_people =  document.getElementById(String(set_value+1)+"_1")
+                    var crowd =  document.getElementById(String(set_value+1)+"_2")
+                    console.log('loader_id')
+                    console.log(loader_id)
+                   
+                    loader_id.style.display="block"
+                    var files=temp[set_value];
+                    console.log(files);
+                    var form_data = new FormData();
+                    form_data.append("files[]",files);
+                    console.log(form_data);
+                    $.ajax({
+
+                        url: "/process_images",
+                        dataType: 'json', // what to expect back from server
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(response) {
+
+                            console.log(response)
+
+                            count_people.innerText=response
+                            if(parseInt(response)>10){
+                                crowd.innerText="Crowd people"
+                            }
+                            else{
+                                crowd.innerText="unCrowdness people"
+                            }
+                            loader_id.style.display="none"
+
+
+                            set_value+=1
+                            onprocess()
+
+                        }
+                    });
+                }
+            }
+
+            $('.table tbody').on('click','.btn1',function(){
+                var cursor=$(this).closest('tr');
+                var s_no=cursor.find('td:eq(0)').text();
+                var view =  document.getElementById("img1")
+                view.src="static/assets/uploads/"+s_no+"input.jpg"
+                var view1 =  document.getElementById("img2")
+                view1.src="static/assets/uploads/"+s_no+"output.jpg"
+                // view.style.display="block"
+                $("#Reportmodel").modal();
+                
+
+        });
+
+        // var array=[["omar",3400,43455],["kashan",1233,2312],["ali",32344,54546]];
+
+        </script>
+    
+    </body>
+    
+    
+    </html>
+
